@@ -6,6 +6,8 @@ import 'rxjs/add/observable/dom/ajax';
 import 'rxjs/add/operator/delay';
 import 'rxjs/add/operator/map';
 
+import { Request } from './request';
+
 const randomInteger = () => Math.floor(Math.random() * 10);
 
 @Injectable()
@@ -36,6 +38,6 @@ export class ArticlesService {
 
   fetchList() {
     // return this.fetchMockList();
-    return this.fetchServerList();
+    return new Request(() => this.fetchServerList());
   }
 }

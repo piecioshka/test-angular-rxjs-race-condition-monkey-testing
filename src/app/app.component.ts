@@ -10,6 +10,8 @@ import { ArticlesService } from './articles.service';
 export class AppComponent {
   articles: Array<Article>;
 
+  private stream = this.articlesService.fetchList();
+
   constructor(private articlesService: ArticlesService) {
     this.articles = [];
   }
@@ -17,7 +19,7 @@ export class AppComponent {
   onClickHandler() {
     this.articles = [];
 
-    this.articlesService.fetchList()
+    this.stream
       .subscribe((list: Array<Article>) => {
         this.articles = list;
       });
