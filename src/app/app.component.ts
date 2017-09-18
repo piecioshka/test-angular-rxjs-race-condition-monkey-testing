@@ -12,14 +12,15 @@ export class AppComponent {
 
   constructor(private articlesService: ArticlesService) {
     this.articles = [];
+
+    this.articlesService.stream.subscribe((list: Array<Article>) => {
+      this.articles = list;
+    });
   }
 
   onClickHandler() {
     this.articles = [];
 
     this.articlesService.fetchList()
-      .subscribe((list: Array<Article>) => {
-        this.articles = list;
-      });
   }
 }
